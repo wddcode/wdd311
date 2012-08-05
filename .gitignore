@@ -1,0 +1,17 @@
+# ignore
+.DS_Store
+*.pyc
+.pydev*
+.project
+
+*/local_settings.py
+*/smedia
+*/media
+*/temp
+*/logs
+*/static
+*/site-static/css/*
+*/site-static/.sass-cache
+*/data.db
+*/static/CACHE
+*/cache/*
