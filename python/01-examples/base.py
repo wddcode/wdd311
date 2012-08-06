@@ -3,3 +3,5 @@
 from lib import calc
 
 print calc.add(1,2)
+
+print "hallo"
