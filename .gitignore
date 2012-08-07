@@ -4,6 +4,10 @@
 .pydev*
 .project
 
+org.eclipse*
+
+docs/_build
+
 */local_settings.py
 */smedia
 */media
