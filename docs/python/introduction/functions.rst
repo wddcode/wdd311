@@ -14,6 +14,8 @@ for
 
 ::
 
+    # -*- coding: utf-8 -*-
+
     numbers = range(10)
     print numbers
     for number in numbers:

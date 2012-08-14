@@ -67,6 +67,49 @@ Examples
 
 
 
+
+Move, copy, rename, create
+--------------------------
+
+
+Examples
+""""""""
+
+
+::
+
+    # create directory | mkdir: "make directory"
+    mkdir documents
+    
+    # create empty file
+    touch file.txt
+
+::
+
+    # rename file | mv: "move"
+    mv file.txt file_new.txt
+    
+    # and back..
+    mv file_new.txt file.txt
+    
+::
+
+    # copy file | cp: "copy"
+    cp file.txt documents/file.txt
+
+::
+
+    # delete file | rm: "remove"
+    rm file.txt
+    
+    # delete folder | rm -R: "remove recursively"   -   (-R = Recursive - CAREFULL!!)
+    rm -R documents/
+    
+    # delete folder (works only if empty) | rmdir: "remove directory"
+    rmdir documents
+
+
+
 Viewing files
 -------------
 

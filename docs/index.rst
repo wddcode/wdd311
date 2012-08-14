@@ -13,7 +13,10 @@ Contents:
     tools/restructured
 
     python/introduction/about
+    python/introduction/virtualenv
     python/introduction/functions
+    
+    python/test
     
     
 

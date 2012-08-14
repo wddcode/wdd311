@@ -1,0 +1,41 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title></title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<meta name="viewport" content="width=device-width">
+
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+
+		<script src="{{ STATIC_URL }}js/lib/modernizr-2.5.3.min.js"></script>
+	</head>
+	<body>
+
+		<div class="container">
+
+			<header>
+
+			</header>
+
+			<section id="global">
+				{% block "main" %}{% endblock %}
+			</section>
+
+			<footer>
+
+			</footer>
+
+		</div>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script>
+			window.jQuery || document.write('<script src="{{ STATIC_URL }}js/lib/jquery-1.7.2.min.js"><\/script>')
+		</script>
+
+	</body>
+</html>
