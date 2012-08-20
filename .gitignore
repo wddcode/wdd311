@@ -1,6 +1,7 @@
 # ignore
 .DS_Store
 *.pyc
+*data.db*
 .pydev*
 .project
 

@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'wsgi.application'
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
-
+ 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -18,6 +18,10 @@ Contents:
     
     python/test
     
+    python/notes/2012-08-14
+    python/notes/2012-08-20
+    python/notes/2012-08-21
+    
     
 
 

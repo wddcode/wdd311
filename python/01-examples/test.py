@@ -6,7 +6,7 @@ import requests
 def my_request(id):
     
     url = 'http://api.discogs.com/releases/%s' % id
-    
+     
     print 'url: %s' % url
     
     r = requests.get(url)

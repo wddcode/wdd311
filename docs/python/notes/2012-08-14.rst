@@ -1,0 +1,83 @@
+Pirate-pad notes - 2012-08-14
+-----------------------------
+
+
+Code:
+=====
+
+        
+
+Install from requirements.file and initialize django
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+   # aktivieren & installieren
+   cd ~/code/wdd311/python/02-django/
+   source ~/srv/wddtest/bin/activate
+   pip install -r requirements/requirements.txt
+   
+   # django befehle
+   python manage.py
+   
+   # projekt initialisieren
+   python manage.py syncdb --all
+   
+   
+   # django starten
+   python manage.py runserver
+
+
+
+
+        
+
+First Model for a simple Chat-Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+   from django.db import models
+   
+   from django.contrib.auth.models import User
+   from django.utils.translation import ugettext as _
+   
+   
+   # Model - Chat
+   
+   class Entry(models.Model):
+       
+       
+       message = models.CharField(verbose_name=_('Chat Message'),max_length=600, null=True, blank=True)
+       created = models.DateTimeField(auto_now_add=True)
+       
+       # user
+       
+       
+       # meta
+       class Meta:
+           verbose_name = _('Entry')
+           verbose_name_plural = _('Entries')
+           ordering = ('-created', )
+       
+       def __unicode__(self):
+           return self.name
+        
+
+Schema (Database) migration/update after Model changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      
+::      
+           
+   # sync database
+   python manage.py syncdb
+   
+   # update database / migrations
+   python manage.py convert_to_south wdd
+
+
+   # update nach änderungen
+   python manage.py schemamigration wdd --auto
+   python manage.py migrate wdd
+
+
