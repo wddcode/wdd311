@@ -7,6 +7,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'wdd.views.home', name='home'),
+    
+    url(r'^wdd/', include('wdd.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 )

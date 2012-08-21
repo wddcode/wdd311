@@ -1,0 +1,116 @@
+  # templates/wdd/chat.html
+
+{% extends "base.html" %}
+
+{% block "main" %}
+<div class="page-header">
+        <h1>Chat Entries <small>lalilo..</small></h1>
+</div>
+
+{% for entry in entries %}
+<div class="entry">
+        <h2>{{ entry.created }}</h2>
+        <p>
+                {{ entry.message }}
+        </p>
+</div>
+{% endfor %}
+
+{% endblock %}
+
+
+BUH!
+
+
+# wdd/views.py
+
+
+from django.core import serializers
+
+
+def chat(request, room=None, mimetype='json'):
+    
+    entries = Entry.objects.all()
+        
+    if mimetype == 'json':
+        js = serializers.get_serializer("json")()
+        data = js.serialize(entries, ensure_ascii=False)
+        
+        return HttpResponse(data, mimetype="application/json")
+    
+    if mimetype == 'html':
+        
+        return render_to_response('wdd/chat.html', {'entries': entries})
+        # return HttpResponse('HTML', mimetype="text/html")
+
+
+
+# wdd/urls.py
+
+from django.conf.urls.defaults import *
+
+import views
+
+urlpatterns = patterns('',
+
+    url(r'^chat/(?P<room>[\w.]+).(?P<mimetype>(json)|(html))$', views.chat, name = 'chat'),
+
+)
+
+
+
+
+# main urls.py
+urlpatterns = patterns('',
+    url(r'^$', 'wdd.views.home', name='home'),    
+    url(r'^wdd/', include('wdd.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+)
+
+
+
+
+
+https://chrome.google.com/webstore/detail/chklaanhfefbnpoihckbnefhakgolnmc
+
+
+
+# migration erstellen
+./manage.py schemamigration wdd --auto
+
+# migration anwenden
+./manage.py migrate wdd
+
+
+
+class Room(models.Model):
+    
+    name = models.CharField(verbose_name=_('Room Name'),max_length=600, null=True, blank=True)
+    
+    # meta
+    class Meta:
+        verbose_name = _('Room')
+        verbose_name_plural = _('Rooms')
+        ordering = ('name', )
+    
+    def __unicode__(self):
+        return "%s" % self.name
+        
+class Entry(models.Model):
+    
+    
+    message = models.CharField(verbose_name=_('Chat Message'),max_length=600, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    room = models.ForeignKey(Room, null=True, blank=True, on_delete=models.SET_NULL)
+    
+    
+    # meta
+    class Meta:
+        verbose_name = _('Entry')
+        verbose_name_plural = _('Entries')
+        ordering = ('-created', )
+    
+    def __unicode__(self):
+        return "%s" % self.created
