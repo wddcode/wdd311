@@ -117,7 +117,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'south',
-    'wdd'
+    'wdd',
+    'tastypie',
 
 )
 
