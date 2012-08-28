@@ -28,7 +28,7 @@ class Entry(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
-    room = models.ForeignKey(Room, null=False, blank=False)
+    room = models.ForeignKey(Room, null=True, blank=True)
     
     # meta
     class Meta:
