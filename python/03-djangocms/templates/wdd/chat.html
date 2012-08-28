@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block "main" %}
+<div class="page-header">
+        <h1>Chat Entries <small>lalilo..</small></h1>
+</div>
+
+{% for entry in entries %}
+<div class="entry">
+        <h2>{{ entry.created }}</h2>
+        <p>
+                {{ entry.message }}
+        </p>
+</div>
+{% endfor %}
+
+{% endblock %}
