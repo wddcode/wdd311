@@ -11,7 +11,7 @@ class Migration(SchemaMigration):
         # Adding model 'Room'
         db.create_table('wdd_room', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=600, null=True, blank=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=40, blank=True)),
         ))
         db.send_create_signal('wdd', ['Room'])
 
@@ -70,14 +70,14 @@ class Migration(SchemaMigration):
             'Meta': {'ordering': "('-created',)", 'object_name': 'Entry'},
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'message': ('django.db.models.fields.CharField', [], {'max_length': '600', 'null': 'True', 'blank': 'True'}),
+            'message': ('django.db.models.fields.CharField', [], {'max_length': '600', 'blank': 'True'}),
             'room': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['wdd.Room']", 'null': 'True', 'on_delete': 'models.SET_NULL', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True', 'on_delete': 'models.SET_NULL', 'blank': 'True'})
         },
         'wdd.room': {
             'Meta': {'ordering': "('name',)", 'object_name': 'Room'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '600', 'null': 'True', 'blank': 'True'})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '40', 'blank': 'True'})
         }
     }
 

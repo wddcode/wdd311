@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db.models import Count
 
 from tastypie import fields
-from tastypie.authorization import DjangoAuthorization
+from tastypie.authorization import *
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 
 from wdd.models import *
@@ -32,8 +32,8 @@ class EntryResource(ModelResource):
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'post', 'put', 'delete']
         resource_name = 'entries'
-        excludes = ['id',]
-        authorization = DjangoAuthorization()
+        #excludes = ['id',]
+        authorization = Authorization()
         filtering = {
             'user': ALL_WITH_RELATIONS,
             'room': ALL_WITH_RELATIONS,
@@ -48,7 +48,3 @@ class EntryResource(ModelResource):
             bundle.data['room'] = {'pk': bundle.data['room_id']}
 
         return super(EntryResource, self).obj_create(bundle, request, **kwargs)
-
-    
-    
-    

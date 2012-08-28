@@ -11,7 +11,7 @@ class Migration(SchemaMigration):
         # Adding model 'Entry'
         db.create_table('wdd_entry', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('message', self.gf('django.db.models.fields.CharField')(max_length=600, null=True, blank=True)),
+            ('message', self.gf('django.db.models.fields.CharField')(max_length=600, blank=True)),
             ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal('wdd', ['Entry'])
@@ -27,7 +27,7 @@ class Migration(SchemaMigration):
             'Meta': {'ordering': "('-created',)", 'object_name': 'Entry'},
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'message': ('django.db.models.fields.CharField', [], {'max_length': '600', 'null': 'True', 'blank': 'True'})
+            'message': ('django.db.models.fields.CharField', [], {'max_length': '600', 'blank': 'True'})
         }
     }
 

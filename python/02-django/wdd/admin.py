@@ -2,20 +2,19 @@ from django.contrib import admin
 
 from wdd.models import *
 
-class EntryAdmin(admin.ModelAdmin):
+class EntryAdmin(admin.ModelAdmin):	
     
-    list_display = ('created', 'user', 'room',)
-    list_filter= ('user', 'room',)
-    
+    list_display = ('created', 'user', 'room')
+    list_filter = ('user',)
+
     date_hierarchy = 'created'
 
 
-admin.site.register(Entry, EntryAdmin)
-
 class RoomAdmin(admin.ModelAdmin):
-    
-    list_display = ('name',)
 
+    list_display = ('name', )
+
+admin.site.register(Entry, EntryAdmin)
 admin.site.register(Room, RoomAdmin)
 
 

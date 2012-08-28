@@ -8,15 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Entry.user'
-        db.add_column('wdd_entry', 'user',
-                      self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True, on_delete=models.SET_NULL, blank=True),
+        # Adding field 'Room.description'
+        db.add_column('wdd_room', 'description',
+                      self.gf('django.db.models.fields.CharField')(max_length=600, null=True, blank=True),
                       keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting field 'Entry.user'
-        db.delete_column('wdd_entry', 'user_id')
+        # Deleting field 'Room.description'
+        db.delete_column('wdd_room', 'description')
 
 
     models = {
@@ -61,7 +61,14 @@ class Migration(SchemaMigration):
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'message': ('django.db.models.fields.CharField', [], {'max_length': '600', 'blank': 'True'}),
+            'room': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['wdd.Room']"}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True', 'on_delete': 'models.SET_NULL', 'blank': 'True'})
+        },
+        'wdd.room': {
+            'Meta': {'ordering': "('name',)", 'object_name': 'Room'},
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '600', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '40', 'blank': 'True'})
         }
     }
 
