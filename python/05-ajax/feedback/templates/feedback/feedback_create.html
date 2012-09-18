@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags ajax_form_utils %}
+
+{% block "main" %}
+
+{% crispy form %}
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $(function(){
+        $('form').validation({% render_ajax_fields form %});
+    });
+});
+</script>
+
+
+{% endblock %}
