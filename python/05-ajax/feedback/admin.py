@@ -13,13 +13,3 @@ admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Feedback)
 
 
-
-
-
-
-
-
-
-
-
-
