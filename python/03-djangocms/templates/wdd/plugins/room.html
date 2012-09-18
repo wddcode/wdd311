@@ -1,0 +1,101 @@
+<div class="well">
+	<h1>{{ object.name }}</h1>
+	<p>
+		{{ object.description }}
+	</p>
+</div>
+
+
+<div class="chat holder">
+	<div class="controls">
+		<input type="text" name="chat_message" id="chat_message" />
+		<input type="submit" name="submit" id="chat_submit" class="btn btn-primary">
+	</div>
+	<div id="chat_panel" style=""></div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		console.log('dom ready');
+
+		var url = '/wdd/api/v1/entries/?format=json';
+
+		$('#chat_submit').live('click', function(e) {
+			e.preventDefault();
+			var chat_message = $('#chat_message').val();
+			post_entry(chat_message);
+		});
+
+		$('#chat_message').bind('keypress', function(e) {
+			var code = (e.keyCode ? e.keyCode : e.which);
+			if (code == 13) {//Enter keycode
+				var chat_message = $('#chat_message').val();
+				$('#chat_message').val('');
+				post_entry(chat_message);
+			}
+		});
+
+		post_entry = function(message) {
+			var data = JSON.stringify({
+				"message" : message,
+			});
+			$.ajax({
+				url : url,
+				type : 'POST',
+				contentType : 'application/json',
+				data : data,
+				dataType : 'json',
+				processData : false,
+				success : function(data) {
+					get_entries();
+				}
+			})
+		};
+
+		get_entries = function() {
+			$.ajax({
+				url : url,
+				success : function(data) {
+
+					var chat_panel = $('#chat_panel');
+					
+					chat_panel.html('');
+
+					for (i in data.objects) {
+
+						var object = data.objects[i];
+
+						var message = object.message;
+						var created = object.created;
+						
+						// format created
+						created = created.substring(11, 19) + ' | ' + created.substring(0, 10);
+						
+						if (object.user) {
+							var username = object.user.username;
+						} else {
+							var username = 'unknown user';
+						}
+
+						var entry_html = '<div class="entry alert alert-success">';
+						entry_html += '<p>' + message + '</p>';
+						entry_html += '<ul class="unstyled horizontal">';
+						entry_html += '<li>by: ' + username + '</li>';
+						entry_html += '<li><small>' + created + '</small></li>';
+						entry_html += '</ul>';
+						entry_html += '</div>';
+
+						chat_panel.append(entry_html);
+
+					};
+				}
+			});
+		}
+		get_entries();
+
+		var int = self.setInterval(function() {
+			get_entries();
+		}, 5000);
+
+	}); 
+</script>

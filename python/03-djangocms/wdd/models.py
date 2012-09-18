@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
+from cms.models import CMSPlugin
 
 class Room(models.Model):
 
@@ -20,6 +21,9 @@ class Room(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('room-detail', [self.pk])
+    
+""""""
+
 
 
 class Entry(models.Model):
@@ -40,3 +44,9 @@ class Entry(models.Model):
     def __unicode__(self):
         return "%s" % self.created
 
+
+
+class RoomPlugin(CMSPlugin):    
+    room = models.ForeignKey('wdd.Room', related_name='plugins')
+    def __unicode__(self):
+        return "%s" % self.room.name

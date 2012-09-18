@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, ListView, FormView, UpdateView
+from django.views.generic import DetailView, ListView, FormView, UpdateView, TemplateView
 from django.views.generic.detail import SingleObjectTemplateResponseMixin
 from django.shortcuts import get_object_or_404, render_to_response
 
@@ -9,6 +9,9 @@ import json
 from django.core import serializers
 
 from wdd.models import Entry, Room
+
+class IndexView(TemplateView):
+    template_name = 'bb/index.html'
 
 
 class RoomList(ListView):

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="js/lib/jquery-1.8.1.min.js"></script>
+		<script src="js/autocomplete.js"></script>
+
+		<link href="css/lib/bootstrap.css" rel="stylesheet" />
+
+		<style type="text/css">
+			ul {
+				list-style: none;
+				margin: 5px 0;
+				width: 220px;
+			}
+			ul.autocomplete > li {
+				background: #efefef;
+				padding: 2px 6px;
+				margin: 4px 0;
+			}
+			ul.autocomplete > li span.id {
+				display: none;
+			}
+			ul.autocomplete > li:hover, ul.autocomplete > li.active {
+				background: #D6FF00;
+			}
+
+		</style>
+
+	</head>
+	<body>
+
+		<header class="subhead" id="overview">
+			<div class="container">
+				<h1>Autocomplete</h1>
+				<p class="lead">
+					jQuery based Autocomplete Workshop
+				</p>
+			</div>
+		</header>
+
+		<div class="container">
+			<section id="global">
+				<div class="page-header">
+					<h2>Demo</h2>
+				</div>
+
+			</section>
+
+			<section id="demo">
+				<div class="row">
+					<div class="span4">
+						<h3>Autocomplete Input</h3>
+
+						<form id="ac_input_form" class="form-horizontal form-compact">
+							<input  id="input_1" class="autocomplete" type="text" placeholder="Type something" autocomplete="off">
+							<span class="help-block"> <ul id="display_1" class="autocomplete">...</ul> Just start typeing... </span>
+						</form>
+
+					</div>
+					<div class="span6">
+						<h3>Ajax editing</h3>
+
+						<form id="ac_edit_form" class="form-horizontal">
+							
+							
+							<div class="result alert" style="display: none;"></div>
+
+							<input type="hidden" class="id" />
+							
+							<div class="control-group">
+								<label class="control-label" for="inputEmail">Name</label>
+								<div class="controls">
+									<input type="text" class="name" id="inputName" placeholder="Name">
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<label class="control-label" for="inputEmail">Email</label>
+								<div class="controls">
+									<input type="text" class="email" id="inputEmail" placeholder="Email">
+								</div>
+							</div>
+
+							<!---->
+							<div class="form-actions">
+								<button type="submit" class="submit btn btn-success btn-small">
+									Save
+								</button>
+								<button type="submit" class="reset btn btn-primary btn-small">
+									Reset form
+								</button>
+							</div>
+							
+
+						</form>
+
+
+
+					</div>
+				</div>
+
+			</section>
+
+		</div>
+
+	</body>
+
+</html>

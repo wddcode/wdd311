@@ -1,0 +1,61 @@
+<html>
+	<head>
+
+		<script src="lib/jquery-1.8.1.min.js"></script>
+		<script src="feedback.js"></script>
+
+		<link href="lib/bootstrap.css" rel="stylesheet">
+
+	</head>
+	<body>
+
+		<section>
+			<h1>Titel</h1>
+			<p>
+				Text
+			</p>
+		</section>
+
+		<section id="feedback_form">
+
+			<form class="form-horizontal">
+
+				<div class="control-group">
+					<label class="control-label" for="inputEmail">Email</label>
+					<div class="controls">
+						<input type="text" id="inputEmail" placeholder="Email">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inputName">Name</label>
+					<div class="controls">
+						<input type="text" id="inputName" placeholder="Name">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inputComment">Comment</label>
+					<div class="controls">
+						<textarea type="text" id="inputComment" placeholder="Comment"></textarea>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+
+				<div class="form-actions">
+					<button type="submit" id="buttonSubmit" class="btn btn-primary">
+						Save changes
+					</button>
+					<button type="button" id="buttonCancel" class="btn">
+						Cancel
+					</button>
+				</div>
+
+			</form>
+
+		</section>
+
+	</body>
+</html>

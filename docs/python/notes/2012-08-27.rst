@@ -1,0 +1,299 @@
+# templates/base.html
+
+<header>
+    <a href="{% url room-list %}">Rooms</a>
+</header>
+
+
+
+# oder:
+
+        <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="">
+                <a href="{% url room-list %}">Rooms</a>
+              </li>
+            </ul>
+          </div>
+
+
+
+
+
+# room_detail.html
+
+{% block "js" %}
+<script>
+        alert(1);
+</script>
+{% endblock %}
+
+
+# base.html (vor </body>)
+
+{% block "js" %}{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+# dom-ready jQuery
+<script>
+        $(document).ready(function() {
+                console.log('dom ready');
+
+                var url = '/wdd/api/v1/entries/?format=json';
+
+                $('#chat_submit').live('click', function(e) {
+                        e.preventDefault();
+                        var chat_message = $('#chat_message').val();
+                        post_entry(chat_message);
+                });
+                
+                $('#chat_message').bind('keypress', function(e) {
+                         var code = (e.keyCode ? e.keyCode : e.which);
+                         if(code == 13) { //Enter keycode
+                                var chat_message = $('#chat_message').val();
+                                $('#chat_message').val('');
+                                post_entry(chat_message);
+                         }
+                });
+
+                post_entry = function(message) {
+                        var data = JSON.stringify({
+                                "message" : message,
+                        });
+                        $.ajax({
+                                url : url,
+                                type : 'POST',
+                                contentType : 'application/json',
+                                data : data,
+                                dataType : 'json',
+                                processData : false,
+                                success : function(data) {
+                                        get_entries();
+                                }
+                        })
+                };
+
+                get_entries = function() {
+                        $.ajax({
+                                url : url,
+                                success : function(data) {
+
+                                        var chat_panel = $('#chat_panel');
+
+                                        chat_panel.html('');
+
+                                        for (i in data.objects) {
+
+                                                var object = data.objects[i];
+
+                                                var message = object.message;
+                                                var created = object.created;
+                                                if (object.user) {
+                                                        var username = object.user.username;
+                                                } else {
+                                                        var username = 'unknown user';
+                                                }
+
+                                                chat_panel.append('<p>' + message + '</p>');
+
+                                        };
+                                }
+                        });
+                }
+                get_entries();
+
+                
+                var int=self.setInterval(function(){
+                        get_entries();
+                }, 5000);
+
+        }); 
+</script>
+
+
+
+
+# jquery ajax
+
+http://api.jquery.com/jQuery.ajax/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends "base.html" %}
+
+
+{% block "main" %}
+
+<div class="well">
+        <h1>{{ object.name }}</h1>
+        <p>{{ object.description }}</p>
+</div>
+
+<!-- {% for entry in object.entry_set.all %}
+
+<div class="well well-small">
+        <h2>{{ entry.user }}</h2>
+        <p>Message: {{ entry.message }}</p>
+</div>
+
+{% endfor %} -->
+
+<div class="chat holder">
+        <div id="chat_panel" style="display: none;">
+
+        </div>
+        <div class="controls">
+                <input type="text" name="chat_message" id="chat_message" />
+                <input type="submit" name="submit" id="chat_submit" class="btn btn-primary">
+        </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block "js" %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script>
+        $(document).ready(function() {
+                console.log('dom ready');
+
+                var url = '/wdd/api/v1/entries/?format=json';
+
+                $('#chat_submit').live('click', function(e) {
+                        e.preventDefault();
+                        var chat_message = $('#chat_message').val();
+                        post_entry(chat_message);
+                });
+
+                post_entry = function(message) {
+                        var data = JSON.stringify({
+                                "message" : message,
+                        });
+                        $.ajax({
+                                url : url,
+                                type : 'POST',
+                                contentType : 'application/json',
+                                data : data,
+                                dataType : 'json',
+                                processData : false,
+                                success : function(data) {
+                                        get_entries();
+                                }
+                        })
+                };
+
+                get_entries = function() {
+                        $.ajax({
+                                url : url,
+                                success : function(data) {
+
+                                        var chat_panel = $('#chat_panel');
+
+                                        chat_panel.html('');
+
+                                        for (i in data.objects) {
+
+                                                var object = data.objects[i];
+
+                                                var message = object.message;
+                                                var created = object.created;
+                                                if (object.user) {
+                                                        var username = object.user.username;
+                                                } else {
+                                                        var username = 'unknown user';
+                                                }
+
+                                                chat_panel.append('<div class="well well-small"><h2>' + username + '</h2><p>Message: ' + message + '</p></div>');
+
+                                        };
+
+                                        $('#chat_panel').show('slow');
+                                }
+                        });
+                }
+                get_entries();
+
+        }); 
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+   //      jQuery(document).ready(function($) {
+                
+   //              var url = "/wdd/api/v1/entries/?format=json";
+                        // var chat_panel = $('#chat_panel');
+
+                        // showMessages();
+
+                        // function showMessages(data) {
+
+          //               $.ajax({
+                        //             url: url,
+                        //             success: function(data) {
+
+                        //                         for (i in data.objects) {
+
+                        //                                 var object = data.objects[i];
+                        //                                 var message = object.message;
+                        //                                 var created = object.created
+                        //                                 var username = object.user.username;
+
+                        //                                 chat_panel.append('<div class="well well-small"><h2>' + username + '</h2><p>Message: ' + message + '</p></div>');
+                        //                         };
+
+                        //                         $('#chat_panel').show('slow');
+                        //             }
+                        //         });
+                        // }
+
+                        // function writeMessage() {
+
+                        //         $.ajax({
+                        //                 url: url,
+                        //                 data: {'message', message},
+                        //                 success: function() {
+
+                        //                 }
+                        //         })
+
+                        // }
+
+   //      });
+        
+</script>
+{% endblock %}

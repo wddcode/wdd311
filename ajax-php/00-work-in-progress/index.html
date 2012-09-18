@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script src="lib/jquery-1.8.1.min.js"></script>
+		<script src="ajax-jquery.js"></script>
+		<style type="text/css">
+			ul {
+				list-style: none;
+				width: 200px;
+			}
+			ul.autocomplete > li {
+				background: #efefef;
+				padding: 2px 6px;
+			}
+			ul.autocomplete > li:hover, ul.autocomplete > li.active {
+				background: #ff00ff;
+			}
+
+		</style>
+
+	</head>
+	<body>
+
+		<h1>Aktueller eintrag:</h1>
+			<div id="update_form">
+			
+				<input type="hidden" class="id" />
+			
+				<label>name</label><input class="name" type="text" />
+				<br />
+				<label>email</label><input class="email" type="text" />	
+				
+				<input type="submit" class="submit" value="Submit" />
+				
+				
+				<div class="result"></div>
+			
+			</div>
+
+
+		<h1>testing</h1>
+		<ul>
+			<li>
+				<input type"text" id="input_1" value="" />
+			</li>
+		</ul>
+
+		<ul id="display_1" class="autocomplete"></ul>
+
+	</body>
+
+</html>

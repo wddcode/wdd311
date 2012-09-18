@@ -1,4 +1,4 @@
-{% load cms_tags sekizai_tags %}
+{% load cms_tags sekizai_tags menu_tags %}
 <!doctype html>
 <html class="no-js" lang="en">
 	<head>
@@ -12,13 +12,24 @@
 
 		<link rel="stylesheet" href="/static/css/bootstrap.css">
 		<link rel="stylesheet" href="/static/css/style.css">
-		
+
 		{% render_block "css" %}
 
 		<script src="{{ STATIC_URL }}js/lib/modernizr-2.5.3.min.js"></script>
+		<script>
+			window.jQuery || document.write('<script src="{{ STATIC_URL }}js/lib/jquery-1.7.2.min.js"><\/script>')
+		</script>
+		
 	</head>
 	<body>
 		{% cms_toolbar %}
+
+
+		<ul>
+			{% show_menu 0 100 100 100 %}
+		</ul>
+
+
 		<div class="container">
 
 			<header>
@@ -26,18 +37,27 @@
 			</header>
 
 			<section id="global">
-				{% block "main" %}{% endblock %}
+				
+				<div class="row">
+					<div class="span8">
+						{% block "main" %}{% endblock %}
+					</div>
+					<div class="span4">
+						{% block "sidebar" %}{% endblock %}
+					</div>
+				</div>
+				
 			</section>
 
 			<footer>
-
+				<hr />
+				{% block "footer" %}{% endblock %}
 			</footer>
 
 		</div>
 
-		<!----> <script>
-		    window.jQuery || document.write('<script src="{{ STATIC_URL }}js/lib/jquery-1.7.2.min.js"><\/script>')
-		</script> 
+		<!---->
+
 
 		{% block "js" %}{% endblock %}
 		{% render_block "js" %}

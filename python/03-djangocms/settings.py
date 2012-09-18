@@ -16,6 +16,9 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+LANGUAGES = [('en', 'en')]
+DEFAULT_LANGUAGE = 0
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -29,7 +32,7 @@ DATABASES = {
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Zurich'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -138,7 +141,7 @@ INSTALLED_APPS = (
     'south',
     'cms.plugins.text',
     #'cms.plugins.picture',
-    #'cms.plugins.link',
+    'cms.plugins.link',
     #'cms.plugins.file',
     #'cms.plugins.snippet',
     #'cms.plugins.googlemap',
@@ -149,6 +152,7 @@ INSTALLED_APPS = (
 # cms related
 CMS_TEMPLATES = (
     ('cms/base.html', gettext('default')),
+    ('cms/col-2.html', gettext('2 Column')),
     #('cms/2col.html', gettext('2 Column')),
 )
 
