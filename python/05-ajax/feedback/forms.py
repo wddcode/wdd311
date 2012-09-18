@@ -15,10 +15,10 @@ class FeedbackForm(forms.ModelForm):
         model = Feedback
         
 
+    """
     def __init__(self, *args, **kwargs):
 
         super(FeedbackForm, self).__init__(*args, **kwargs)
-
 
         self.helper = FormHelper()
         self.helper.form_id = "bulk_edit%s" % 'asd'
@@ -41,6 +41,6 @@ class FeedbackForm(forms.ModelForm):
         
         
         self.helper.add_layout(layout)
-        
+        """
 
     

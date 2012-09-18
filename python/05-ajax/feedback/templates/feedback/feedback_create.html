@@ -2,10 +2,14 @@
 
 {% load crispy_forms_tags ajax_form_utils %}
 
+
 {% block "main" %}
-
 {% crispy form %}
+{% endblock %}
 
+
+{% block "js" %}
+<!--
 <script type="text/javascript">
 $(document).ready(function() {
     $(function(){
@@ -13,6 +17,5 @@ $(document).ready(function() {
     });
 });
 </script>
-
-
+-->
 {% endblock %}
