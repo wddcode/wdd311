@@ -5,8 +5,11 @@ from django.utils.translation import ugettext as _
 class Feedback(models.Model):
 
     name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=256)
+    email = models.EmailField(verbose_name="Email address",max_length=256)
     comment = models.TextField()
+    
+    
+    whatever = models.CharField(max_length=100)
     
     created = models.DateTimeField(auto_now_add=True)
     

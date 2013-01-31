@@ -15,18 +15,18 @@ class FeedbackForm(forms.ModelForm):
         model = Feedback
         
 
-    """
+    
     def __init__(self, *args, **kwargs):
 
         super(FeedbackForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper()
-        self.helper.form_id = "bulk_edit%s" % 'asd'
+        self.helper.form_id = "import_create%s" % ''
         self.helper.form_class = 'form-horizontal'
         self.helper.form_method = 'post'
         self.helper.form_action = ''
         self.helper.form_tag = True
-
+        """"""
         layout = Layout(
             Fieldset(
                   'Your feedback',
@@ -38,9 +38,7 @@ class FeedbackForm(forms.ModelForm):
                 Submit('submit', 'Submit', css_class='btn btn-primary')
             ),
         )
-        
-        
         self.helper.add_layout(layout)
-        """
+        
 
     

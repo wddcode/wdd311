@@ -14,9 +14,7 @@ class FeedbackList(ListView):
 class FeedbackDetail(DetailView):
     model = Feedback
     
-"""
 class FeedbackCreate(CreateView):
     template_name = 'feedback/feedback_create.html'
     form_class = FeedbackForm
     success_url = lazy(reverse, str)("feedback-feedback-list")  
-"""
